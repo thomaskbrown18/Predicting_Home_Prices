@@ -1,160 +1,113 @@
+# Predictions for Housing Prices in King County:
 
-# Module 2 Final Project
+For this project, I explored housing prices in King County Washington and built a model to accurately predict other home prices in the area.  With this model, we can explore different variables and tell which ones likely have the largest impact on price.<br>
+The value in this approach is that when investing in real estate or flipping homes for example, you can tell which variables add the most value and focus on those.<br>
+This is useful because you can see which homes may be underappreciated, making them a good buy, as well as which areas of the home to upgrade, making them sell for hopefully more than you invested.
 
+## Data Cleaning:
 
-## Introduction
+The data for this model was already fairly clean.  It holds 21 variables, and only a few needed some minor cleaning. I completed all the cleaning using Pandas. <br><br>
 
-In this lesson, we'll review all of the guidelines and specifications for the final project for Module 2.
+* **id** - unique identified for a house
+* **dateDate** - house was sold
+* **pricePrice** -  is prediction target
+* **bedroomsNumber** -  of Bedrooms/House
+* **bathroomsNumber** -  of bathrooms/bedrooms
+* **sqft_livingsquare** -  footage of the home
+* **sqft_lotsquare** -  footage of the lot
+* **floorsTotal** -  floors (levels) in house
+* **waterfront** - House which has a view to a waterfront
+* **view** - Quality of view
+* **condition** - How good the condition is ( Overall )
+* **grade** - overall grade given to the housing unit, based on King County grading system
+* **sqft_above** - square footage of house apart from basement
+* **sqft_basement** - square footage of the basement
+* **yr_built** - Built Year
+* **yr_renovated** - Year when house was renovated
+* **zipcode** - zip
+* **lat** - Latitude coordinate
+* **long** - Longitude coordinate
+* **sqft_living15** - The square footage of interior housing living space for the nearest 15 neighbors
+* **sqft_lot15** - The square footage of the land lots of the nearest 15 neighbors
+<br><br>
+After this, I also added data on cities, which I added to reduce the noise in terms of geography.  I grouped over 70 zip codes into roughly 15 cities or regions.  I wanted complete geographic representation in my model, but I did not want to use more than 70 variables for it, so this seemed like a healthy compromise.<br>
+# Exploratory Data Analysis
+## Impact of Geography on Price:
 
-## Objectives
-You will be able to:
-* Describe all required aspects of the final project for Module 2
-* Describe all required deliverables
-* Describe what constitutes a successful project
-
-## Final Project Summary
-
-Another module down--you're almost half way there!
-
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-mod-2-project-v2-1/master/halfway-there.gif)
-
-All that remains in Module 2 is to put our newfound data science skills to use with a final project! You should expect this project to take between 20 and 25 hours of solid, focused effort. If you're done way quicker, go back and dig in deeper or try some of the optional "level up" suggestions. If you're worried that you're going to get to 30 hrs and still not even have the data imported, reach out to an instructor in Slack ASAP to get some help!
-
-## The Dataset
-
-For this project, you'll be working with the King County House Sales dataset. We've modified the dataset to make it a bit more fun and challenging.  The dataset can be found in the file `"kc_house_data.csv"`, in this repo.
-
-The description of the column names can be found in the column_names.md file in this repository. As with most real world data sets, the column names are not perfectly described, so you'll have to do some research or use your best judgment if you have questions relating to what the data means.
-
-You'll clean, explore, and model this dataset with a multivariate linear regression to predict the sale price of houses as accurately as possible.
-
-## The Deliverables
-
-For online students, there will be five deliverables for this project (Note: On-campus students may have different requirements, please speak with your instructor):
-
-1. A well documented **Jupyter Notebook** containing any code you've written for this project and comments explaining it. This work will need to be pushed to your GitHub repository in order to submit your project.  
-2. An organized **README.md** file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository.
-3. A short **Keynote/PowerPoint/Google Slides presentation** (delivered as a PDF export) giving a high-level overview of your methodology and recommendations for non-technical stakeholders. Make sure to also add and commit this pdf of your non-technical presentation to your repository with a file name of presentation.pdf.
-4. **[A Blog Post](https://github.com/learn-co-curriculum/dsc-welcome-blogging-v2-1)**	
-5. A **Video Walkthrough** of your non-technical presentation. Some common video recording tools used are Zoom, Quicktime, and Nimbus. After you record your presentation, publish it on a service like YouTube or Google Drive, you will need a link to the video to submit your project.
-
-Note: On-campus students may have different requirements, please speak with your instructor.
-
-### Jupyter Notebook Must-Haves
-
-For this project, your Jupyter Notebook should meet the following specifications:
-
-#### Organization/Code Cleanliness
-
-* The notebook should be well organized, easy to follow,  and code should be commented where appropriate.  
-    * Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code.  All functions have docstrings that act as professional-quality documentation
-* The notebook is written for technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.
-
-#### Visualizations & EDA
-
-* Your project contains at least 4 meaningful data visualizations, with corresponding interpretations. All visualizations are well labeled with axes labels, a title, and a legend (when appropriate)  
-* You pose at least 3 meaningful questions and answer them through EDA.  These questions should be well labeled and easy to identify inside the notebook.
-    * **Level Up**: Each question is clearly answered with a visualization that makes the answer easy to understand.   
-* Your notebook should contain 1 - 2 paragraphs briefly explaining your approach to this project.
-
-#### Model Quality/Approach
-
-* Your model should not include any predictors with p-values greater than .05.  
-* Your notebook shows an iterative approach to modeling, and details the parameters and results of the model at each iteration.  
-    * **Level Up**: Whenever necessary, you briefly explain the changes made from one iteration to the next, and why you made these choices.  
-* You provide at least 1 paragraph explaining your final model.   
-* You pick at least 3 coefficients from your final model and explain their impact on the price of a house in this dataset.   
-
-
-### Non-Technical Presentation Must-Haves
-
-Another deliverable should be a Keynote, PowerPoint or Google Slides presentation delivered as a pdf file in your fork of this repository with the file name of `presentation.pdf` detailing the results of your project.  Your target audience is non-technical people interested in using your findings to maximize their profit when selling their home.
-
-Your presentation should:
-
-* Contain between 5 - 10 professional-quality slides.  
-    * **Level Up**: The slides should use visualizations whenever possible, and avoid walls of text.
-* Take no more than 5 minutes to present.   
-* Avoid technical jargon and explain the results in a clear, actionable way for non-technical audiences.   
-
-**_Based on the results of your models, your presentation should discuss at least two concrete features that highly influence housing prices._**
-
-### Blog Post Must-Haves
-
-Refer back to the [Blogging Guidelines](https://github.com/learn-co-curriculum/dsc-welcome-blogging-v2-1) for the technical requirements and blog ideas.
-
-
-## The Process 
-The process for this project is identical to the process you followed for your module 1 project. We specified it again below as a refresher.
-(Note: On-campus students may have different processes, please speak with your instructor)
-
-### 1. Getting Started
-
-Please start by reviewing this document. If you have any questions, please ask them in Slack ASAP so (a) we can answer the questions and (b) so we can update this repository to make it clearer.
-
-Be sure to let the instructor team know when you’ve started working on a project, either by reaching out over Slack or, if you are in a full-time or part-time cohort, by connecting with your Cohort Lead in your weekly 1:1. If you’re not sure who to reach out to, post in the #online-ds-sp-000 channel in Slack.
-
-Once you're done with this module, please start on the project. Do that by forking this repository, cloning it locally, and working in the student.ipynb file. Make sure to also add and commit a pdf of your presentation to the repository with a file name of `presentation.pdf`.
-
-### 2. The Project Review
-
-_Note: On-campus students may have different review processes, please speak with your instructor._
-
-> **When you start on the project, please also reach out to an instructor immediately to schedule your project review** (if you're not sure who to schedule with, please ask in Slack!)
-
-#### What to expect from the Project Review
-
-Project reviews are focused on preparing you for technical interviews. Treat project reviews as if they were technical interviews, in both attitude and technical presentation *(sometimes technical interviews will feel arbitrary or unfair - if you want to get the job, commenting on that is seldom a good choice)*.
-
-The project review is comprised of a 45 minute 1:1 session with one of the instructors. During your project review, be prepared to:
-
-#### 1. Deliver your PDF presentation to a non-technical stakeholder.
-In this phase of the review (~10 mins) your instructor will play the part of a non-technical stakeholder that you are presenting your findings to. The presentation  should not exceed 5 minutes, giving the "stakeholder" 5 minutes to ask questions.
-
-In the first half of the presentation (2-3 mins), you should summarize your methodology in a way that will be comprehensible to someone with no background in data science and that will increase their confidence in you and your findings. In the second half (the remaining 2-3 mins) you should summarize your findings and be ready to answer a couple of non-technical questions from the audience. The questions might relate to technical topics (sampling bias, confidence, etc) but will be asked in a non-technical way and need to be answered in a way that does not assume a background in statistics or machine learning. You can assume a smart, business stakeholder, with a non-quantitative college degree.
-
-#### 2. Go through the Jupyter Notebook, answering questions about how you made certain decisions. Be ready to explain things like:
-    * "How did you pick the question(s) that you did?"
-    * "Why are these questions important from a business perspective?"
-    * "How did you decide on the data cleaning options you performed?"
-    * "Why did you choose a given method or library?"
-    * "Why did you select those visualizations and what did you learn from each of them?"
-    * "Why did you pick those features as predictors?"
-    * "How would you interpret the results?"
-    * "How confident are you in the predictive quality of the results?"
-    * "What are some of the things that could cause the results to be wrong?"
-
-Think of the first phase of the review (~30 mins) as a technical boss reviewing your work and asking questions about it before green-lighting you to present to the business team. You should practice using the appropriate technical vocabulary to explain yourself. Don't be surprised if the instructor jumps around or sometimes cuts you off - there is a lot of ground to cover, so that may happen.
-
-If any requirements are missing or if significant gaps in understanding are uncovered, be prepared to do one or all of the following:
-* Perform additional data cleanup, visualization, feature selection, modeling and/or model validation
-* Submit an improved version
-* Meet again for another Project Review
-
-What won't happen:
-* You won't be yelled at, belittled, or scolded
-* You won't be put on the spot without support
-* There's nothing you can do to instantly fail or blow it
-
-**Please note: We need to receive the URL of your repository at least 24 hours before and please have the project finished at least 3 hours before your review so we can look at your materials in advance.**
-
-
-## Submitting your Project
-
- You’re almost done! In order to submit your project for review, include the following links to your work in the corresponding fields on the right-hand side of Learn.
-
- 1. **GitHub Repo:** Now that you’ve completed your project in Jupyter Notebooks, push your work to GitHub and paste that link to the right. (If you need help doing so, review the resources [here](https://docs.google.com/spreadsheets/d/1CNGDhjcQZDRx2sWByd2v-mgUOjy13Cd_hQYVXPuzEDE/edit#gid=0).)
-_Reminder: Make sure to also add and commit a pdf of your non-technical presentation to the repository with a file name of presentation.pdf._
-2. **Blog Post:** Include a link to your blog post.
-3. **Record Walkthrough:** Include a link to your video walkthrough.
-
- Hit "I'm done" to wrap it up. You will receive an email in order to schedule your review with your instructor.
+Which are the top areas in terms of home price?
+Here, we'll use a mapping library called Folium to see housing prices in different areas.
+This can give us a good idea of where the most expensive areas are:
  
- 
-## Grading Rubric
-Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-2-project-v2-1/blob/master/mod2_project_rubric.pdf). On-campus students may have different review processes, please speak with your instructor.
+! [Imgur](https://i.imgur.com/ZoIKrwz.png)
+
+## Impact of Grade on Price:
+
+From King County Assessment Site (normalized to reflect my data): 
+- 0 Falls short of minimum building standards. Normally cabin or inferior structure.
+- 1 Generally older, low quality construction. Does not meet code.
+- 2 Low construction costs and workmanship. Small, simple design.
+- 3 Lowest grade currently meeting building code. Low quality materials and simple designs.
+- 4 Average grade of construction and design. Commonly seen in plats and older sub-divisions.
+- 5 Just above average in construction and design. Usually better materials in both the exterior and interior finish work.
+- 6 Better architectural design with extra interior and exterior design and quality.
+- 7 Homes of this quality generally have high quality features. Finish work is better and more design quality is seen in the floor plans. Generally have a larger square footage.
+- 8 Custom design and higher quality finish work with added amenities of solid woods, bathroom fixtures and more luxurious options.
+- 9 Custom design and excellent builders. All materials are of the highest quality and all conveniences are present.
+- 10 Generally custom designed and built. Mansion level. Large amount of highest quality cabinet work, wood trim, marble, entry ways etc.
+
+! [Imgur](https://i.imgur.com/odKvlxL.png)
+
+Conclusion: Buying, renovating, and flipping can be highly profitable! Especially if you are taking a 5 rated home (just above average) and upgrading it to a 6 by upgrading the interior and exterior finishing touches. There is a 200K difference between the two medians! It seems very doable to turn a 5 into a 6 with less than 200K, enabling you to capture a profit.
+
+## Impact of Month of Sale on Price: 
+
+Does the month you sell in impact house price?
+! [Imgur](https://i.imgur.com/VxWLidi.png)
+It seems as though month affects average house price very little!<br>
+This came as a surprise, but the difference between median house price in December vs April was only ~40K.  While this may be enough to influence some people to wait through the winter, <br>I'm sure we can do better than this.  Let's look at some regression models to see what variables are the most important when it comes to price.  With this, we can determine what would be best to target if you're looking to sell your house.  
+
+# Regression Modeling: 
+
+## Baseline Model:
+After some feature engineering and other cleaning steps (also using Pandas), I created this baseline model.  It's important to have a simple model with few transformations or polynomial features in order to have a baseline to compare other models against.
+
+! [Imgur](https://i.imgur.com/LTjTwGl.png)
+
+This was a great start!  RMSE pretty large at around $150K, but r2 is quite high at over .9.  Additionally, there's only a $700 dollar difference between the root mean squared error of the train and test data! This means that so far, we don't have to worry about over-fitting. Right now, our main concern is keeping the r2 high while reducing RMSE. 
+<br>Let's now test the following:
+- Do log transformed variables improve the r2?
+- Would a polynomial regression help?
+- Are there any interactions we can use?
+- How does including geographic data help?
+
+## Final model:
+
+After testing various models such as polynomial models and a model log transformed variables, I concluded that this final model was the best of the ones I tried.  This model is a multilinear model that uses the city data from 16 different cities/regions referenced before.  This geographic data was one of the main sets of variables that boosted accuracy in terms of r squared and RMSE.<br><br>
+Here is a screenshot of the model:
+
+! [Imgur](https://i.imgur.com/km9TGLm.png)
+
+Here are some of the more important features from the model:
+<br>
+Cities:
+! [Imgur](https://i.imgur.com/5UVO37t.png)
+Having a Renovation:
+! [Imgur](https://i.imgur.com/kozBMjP.png) 
+
+## Further Work To Do:
+In the future, I'd love to explore the following features to try to squeeze out a better model:
+- Crime data - can we get a better model by including data on crime for each zip code?
+- Distance to important features - Does distance from downtown or the highway boost value?
+- Neighborhood data - can we get more granular than zip codes to improve the model?\
+- 
+## Conclusion:
+Based on my final regression model, we can formulate the following strategy for flipping houses:
+- Buy homes in more expensive areas that are undervalued relative to neighbors.
+- Renovations help a homes value quite a bit.  All else equal, by around 75,000.  This is valuable information both for those looking to sell their homes, and people looking to buy and flip homes.
+- Use renovations to increase grade and price, and then sell the home, receiving the boost from grade, area, and renovation!
+<br>
+Thanks for reading!
+<br>
+-Thomas
 
 
-## Summary
-
-The end of module projects and project reviews are a critical part of the program. They give you a chance to both bring together all the skills you've learned into realistic projects and to practice key "business judgement" and communication skills that you otherwise might not get as much practice with.
