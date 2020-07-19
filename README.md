@@ -105,7 +105,7 @@ In the future, I'd love to explore the following features to try to squeeze out 
 - Crime data - can we get a better model by including data on crime for each zip code?  High crime in a given area usually correlates with lower priced homes.  I imagine this data could improve the model.
 - Distance to important features - Does distance from downtown or the highway boost value?  I've noticed that houses sometimes have "commute scores" or "walkability scores."  I imagine this could improve the model as well.
 - Neighborhood data - can we get more granular than zip codes to improve the model?  I would not want to make the model more complicated than it is now, but I'm still curious to see how accurate we can get the model without overfitting.  neighborhood average home prices could help in this regard.
-<br>
+
 ## Conclusion:
 Based on my final regression model, we can formulate the following strategy for flipping houses:
 - Buy homes in more expensive areas that are undervalued relative to neighbors.
