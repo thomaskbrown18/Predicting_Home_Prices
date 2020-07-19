@@ -8,7 +8,7 @@ This is useful because you can see which homes may be underappreciated, making t
 
 The data for this model was already fairly clean.  It holds 21 variables, and only a few needed some minor cleaning. I completed all the cleaning using Pandas. <br><br>
 
-* **id** - unique identified for a house
+* **id** - unique identifier for a house
 * **dateDate** - house was sold
 * **pricePrice** -  is prediction target
 * **bedroomsNumber** -  of Bedrooms/House
@@ -40,7 +40,7 @@ This can give us a good idea of where the most expensive areas are:
  
 ![Imgur](https://i.imgur.com/ZoIKrwz.png)
 
-Grouping by Zip Code gives us a general idea of which zip codes are more expensive than others, but given how large some zip codes are, it makes more sense to use longitute and latitude in the heat map in order to find the higher or lower priced areas.
+Grouping by Zip Code gives us a general idea of which zip codes are more expensive than others, but given how large some zip codes are, it makes more sense to use longitude and latitude in the heat map in order to find the higher or lower priced areas.
 
 ## Impact of Grade on Price:
 
@@ -49,7 +49,7 @@ From King County Assessment Site:
 - 4 Generally older, low quality construction. Does not meet code.
 - 5 Low construction costs and workmanship. Small, simple design.
 - 6 Lowest grade currently meeting building code. Low quality materials and simple designs.
-- 7 Average grade of construction and design. Commonly seen in plats and older sub-divisions.
+- 7 Average grade of construction and design. Commonly seen in flats and older subdivisions.
 - 8 Just above average in construction and design. Usually better materials in both the exterior and interior finish work.
 - 9 Better architectural design with extra interior and exterior design and quality.
 - 10 Homes of this quality generally have high quality features. Finish work is better and more design quality is seen in the floor plans. Generally have a larger square footage.
@@ -75,7 +75,7 @@ After some feature engineering and other cleaning steps (also using Pandas), I c
 
 ![Imgur](https://i.imgur.com/LTjTwGl.png)
 
-This was a great start!  RMSE pretty large at around $150K, but r2 is quite high at over .9.  Additionally, there's only a $700 dollar difference between the root mean squared error of the train and test data! This means that so far, we don't have to worry about over-fitting. Right now, our main concern is keeping the r2 high while reducing RMSE. 
+This was a great start!  RMSE is pretty large at around $150K, but r2 is quite high at over .9.  Additionally, there's only a $700 dollar difference between the root mean squared error of the train and test data! This means that so far, we don't have to worry about over-fitting. Right now, our main concern is keeping the r2 high while reducing RMSE. 
 <br>Let's now test the following:
 - Do log transformed variables improve the r2?
 - Would a polynomial regression help?
