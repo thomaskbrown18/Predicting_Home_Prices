@@ -38,7 +38,7 @@ Which are the top areas in terms of home price?
 Here, we'll use a mapping library called Folium to see housing prices in different areas.
 This can give us a good idea of where the most expensive areas are:
  
-! [Imgur](https://i.imgur.com/ZoIKrwz.png)
+![Imgur](https://i.imgur.com/ZoIKrwz.png)
 
 Grouping by Zip Code gives us a general idea of which zip codes are more expensive than others, but given how large some zip codes are, it makes more sense to use longitute and latitude in the heat map in order to find the higher or lower priced areas.
 
@@ -57,14 +57,14 @@ From King County Assessment Site:
 - 12 Custom design and excellent builders. All materials are of the highest quality and all conveniences are present.
 - 13 Generally custom designed and built. Mansion level. Large amount of highest quality cabinet work, wood trim, marble, entry ways etc.
 
-! [Imgur](https://i.imgur.com/odKvlxL.png)
+![Imgur](https://i.imgur.com/odKvlxL.png)
 
 Conclusion: Buying, renovating, and flipping can be highly profitable! Especially if you are taking a 5 rated home (just above average) and upgrading it to a 6 by upgrading the interior and exterior finishing touches. There is a 200K difference between the two medians! It seems very doable to turn a 5 into a 6 with less than 200K, enabling you to capture a profit.
 
 ## Impact of Month of Sale on Price: 
 
 Does the month you sell in impact house price?
-! [Imgur](https://i.imgur.com/VxWLidi.png)
+![Imgur](https://i.imgur.com/VxWLidi.png)
 It seems as though month affects average house price very little!<br>
 This came as a surprise, but the difference between median house price in December vs April was only ~40K.  While this may be enough to influence some people to wait through the winter, I'm sure we can do better than this.  Let's look at some regression models to see what variables are the most important when it comes to price.  With this, we can determine what would be best to target if you're looking to sell your house.  
 
@@ -73,7 +73,7 @@ This came as a surprise, but the difference between median house price in Decemb
 ## Baseline Model:
 After some feature engineering and other cleaning steps (also using Pandas), I created this baseline model.  It's important to have a simple model with few transformations or polynomial features in order to have a baseline to compare other models against.
 
-! [Imgur](https://i.imgur.com/LTjTwGl.png)
+![Imgur](https://i.imgur.com/LTjTwGl.png)
 
 This was a great start!  RMSE pretty large at around $150K, but r2 is quite high at over .9.  Additionally, there's only a $700 dollar difference between the root mean squared error of the train and test data! This means that so far, we don't have to worry about over-fitting. Right now, our main concern is keeping the r2 high while reducing RMSE. 
 <br>Let's now test the following:
@@ -87,17 +87,22 @@ This was a great start!  RMSE pretty large at around $150K, but r2 is quite high
 After testing various models such as polynomial models and a model log transformed variables, I concluded that this final model was the best of the ones I tried.  This model is a multilinear model that uses the city data from 16 different cities/regions referenced before.  This geographic data was one of the main sets of variables that boosted accuracy in terms of r squared and RMSE.  I decided to not use polynomial or log transformed features as it did not improve accuracy but made the model more difficult to explain to a broader audience.<br><br>
 Here is a screenshot of the model:
 
+<<<<<<< HEAD
 ! [Imgur](https://i.imgur.com/km9TGLm.png)
 <br>
 In the end, the model had a R squared value of .948, which means that roughly 95% of the variance in house prices could be explained by this model.  That said, it had a Root Mean Squared Error of roughly 125K.  This means that the average house prediction could vary in accuracy by plus or minus 125K.  While this is high, it likely could not be helped without either eliminating even more outliers, or using much more granular location data.  <br>
 I decided to use only 16 cities/regions in order to keep the model clean, and for this simple multi-linear regression model, I stand by that decision even if I could have reduced the RMSE by including 80 plus zip codes as variables.
 <br>
+=======
+![Imgur](https://i.imgur.com/km9TGLm.png)
+
+>>>>>>> 818e434ce25f958956631a1fb9f59d23e1557d6d
 Here are some of the more important features from the model:
 <br>
 Cities:
-! [Imgur](https://i.imgur.com/5UVO37t.png)
+![Imgur](https://i.imgur.com/5UVO37t.png)
 Having a Renovation:
-! [Imgur](https://i.imgur.com/kozBMjP.png) 
+![Imgur](https://i.imgur.com/kozBMjP.png) 
 
 ## Further Work To Do:
 In the future, I'd love to explore the following features to try to squeeze out a better model:
