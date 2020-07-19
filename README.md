@@ -87,16 +87,13 @@ This was a great start!  RMSE pretty large at around $150K, but r2 is quite high
 After testing various models such as polynomial models and a model log transformed variables, I concluded that this final model was the best of the ones I tried.  This model is a multilinear model that uses the city data from 16 different cities/regions referenced before.  This geographic data was one of the main sets of variables that boosted accuracy in terms of r squared and RMSE.  I decided to not use polynomial or log transformed features as it did not improve accuracy but made the model more difficult to explain to a broader audience.<br><br>
 Here is a screenshot of the model:
 
-<<<<<<< HEAD
-! [Imgur](https://i.imgur.com/km9TGLm.png)
+![Imgur](https://i.imgur.com/km9TGLm.png)
 <br>
 In the end, the model had a R squared value of .948, which means that roughly 95% of the variance in house prices could be explained by this model.  That said, it had a Root Mean Squared Error of roughly 125K.  This means that the average house prediction could vary in accuracy by plus or minus 125K.  While this is high, it likely could not be helped without either eliminating even more outliers, or using much more granular location data.  <br>
 I decided to use only 16 cities/regions in order to keep the model clean, and for this simple multi-linear regression model, I stand by that decision even if I could have reduced the RMSE by including 80 plus zip codes as variables.
 <br>
-=======
 ![Imgur](https://i.imgur.com/km9TGLm.png)
 
->>>>>>> 818e434ce25f958956631a1fb9f59d23e1557d6d
 Here are some of the more important features from the model:
 <br>
 Cities:
