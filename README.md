@@ -107,7 +107,6 @@ In the future, I'd love to explore the following features to try to squeeze out 
 - Neighborhood data - can we get more granular than zip codes to improve the model?  I would not want to make the model more complicated than it is now, but I'm still curious to see how accurate we can get the model without overfitting.  neighborhood average home prices could help in this regard.
 <br>
 ## Conclusion:
-<br>
 Based on my final regression model, we can formulate the following strategy for flipping houses:
 - Buy homes in more expensive areas that are undervalued relative to neighbors.
 - Renovations help a homes value quite a bit.  All else equal, they can help by around 75,000 dollars.  This is valuable information both for those looking to sell their homes, and people looking to buy and flip homes.
